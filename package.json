@@ -1,0 +1,15 @@
+{
+  "name": "your-pets-clinic-hubspot-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "upload": "hs cms upload --account= HubSpot_CMS_trianing_Janine Janine-pets-clinic-theme Janine-pets-clinic-theme",
+  "watch": "hs cms watch --account= HubSpot_CMS_trianing_Janine --initial-upload Janine-pets-clinic-theme Janine-pets-clinic-theme",
+  "preview": "hs cms theme preview Janine-pets-clinic-theme Janine-pets-clinic-theme"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
