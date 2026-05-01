@@ -1,86 +1,85 @@
-{# 1. 從模組欄位抓取正確的設定值 #}
-{% set table_id = 271285926 %}
-{# 關鍵修正：將變數名改為 card_columns #}
-{% set cols = module.card_columns|default(3) %} 
+{% set filter_str = "" %}
+{% if module.show_popular_only %}
+  {% set filter_str = "popular=true" %}
+{% endif %}
+{% set rows = hubdb_table_rows(module.hubdb_table_id, filter_str, "name", module.display_count) %}
 
-<div class="service-listing-dynamic">
-  <div class="container">
-    
-    {# 標題區塊 #}
-    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-      {% if module.section_title %}<h2>{{ module.section_title }}</h2>{% endif %}
+<section class="service-listing">
+  <div class="sl-container">
+
+    {# ── Section Header ── #}
+    <div class="sl-header">
+      {% if module.section_badge %}
+        <span class="sl-badge">{{ module.section_badge }}</span>
+      {% endif %}
+
+      {% if module.section_title %}
+        <h2 class="sl-title">{{ module.section_title }}</h2>
+      {% endif %}
+
+      {% if module.section_subtitle %}
+        <div class="sl-subtitle">{{ module.section_subtitle }}</div>
+      {% endif %}
     </div>
 
-    {# 卡片網格：使用 CSS Grid 控制欄位數量 #}
-    <div class="service-grid" style="display: grid; grid-template-columns: repeat({{ cols }}, 1fr); gap: 30px;">
-      
-      {# 執行 HubDB 資料抓取 #}
-      {% for row in hubdb_table_rows(table_id) %}
-        <div class="service-card">
-          <div class="card-img">
+    {# ── Cards Grid ── #}
+    <div class="sl-grid sl-cols-{{ module.card_columns }}">
+      {% for row in rows %}
+        <div class="sl-card">
+
+          {# Image + Overlay Badges #}
+          <div class="sl-card-img">
             {% if row.image.url %}
-              <img src="{{ row.image.url }}" alt="{{ row.name }}">
+              <img src="{{ row.image.url }}" alt="{{ row.name }}" loading="lazy">
             {% else %}
-              <div style="height:200px; background:#eee;"></div>
+              <div class="sl-card-img-placeholder"></div>
+            {% endif %}
+
+            {% if row.popular %}
+              <span class="sl-badge-img sl-badge-popular">Popular</span>
+            {% endif %}
+            {% if row.category %}
+              <span class="sl-badge-img sl-badge-category">{{ row.category }}</span>
             {% endif %}
           </div>
-          
-          <div class="card-body">
-            <span class="category-tag">{{ row.category }}</span>
-            <h3>{{ row.name }}</h3>
-            <p>{{ row.description|truncate(100) }}</p>
-            
-            <div class="card-footer">
-              <span class="duration">⏱ {{ row.duration }}</span>
-              {% if module.show_price %}
-                <span class="price">${{ row.price }}</span>
+
+          {# Card Body #}
+          <div class="sl-card-body">
+            <h3 class="sl-card-name">{{ row.name }}</h3>
+            <p class="sl-card-desc">{{ row.description }}</p>
+
+            <div class="sl-card-meta">
+              {% if row.duration %}
+                <span class="sl-duration">🕐 {{ row.duration }}</span>
+              {% endif %}
+              {% if module.show_price and row.price %}
+                <span class="sl-price">${{ row.price }}</span>
               {% endif %}
             </div>
-            
-            <span class="fake-link">Learn More →</span>
+
+            {% if module.book_cta_text %}
+              <a href="{{ module.book_cta_url.href }}"
+                 {% if module.book_cta_url.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+                 class="sl-book-btn">
+                {{ module.book_cta_text }}
+              </a>
+            {% endif %}
           </div>
+
         </div>
       {% endfor %}
     </div>
 
+    {# ── Bottom CTA ── #}
+    {% if module.cta_text %}
+      <div class="sl-footer-cta">
+        <a href="{{ module.cta_url.href }}"
+           {% if module.cta_url.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+           class="sl-cta-btn">
+          {{ module.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+
   </div>
-</div>
-
-<style>
-  .service-listing-dynamic { padding: 80px 0; background: #ffffff; }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-  
-  .service-card { 
-    border: 1px solid #f0f0f0; 
-    border-radius: 15px; 
-    overflow: hidden; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .card-img img { width: 100%; height: 220px; object-fit: cover; }
-  .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-  
-  .category-tag { color: #00B894; font-weight: 700; font-size: 13px; text-transform: uppercase; }
-  .card-body h3 { margin: 10px 0; font-size: 22px; color: #2D3436; }
-  .card-body p { color: #636E72; line-height: 1.6; font-size: 15px; margin-bottom: 20px; flex-grow: 1; }
-
-  .card-footer { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding-top: 15px; 
-    border-top: 1px solid #eee; 
-  }
-  .duration { font-size: 14px; color: #999; }
-  .price { font-weight: 800; color: #2D3436; font-size: 18px; }
-  .fake-link { display: block; margin-top: 15px; color: #00B894; font-weight: 700; }
-
-  /* 手機版強制一排一個 */
-  @media (max-width: 767px) {
-    .service-grid { grid-template-columns: 1fr !important; }
-  }
-</style>
+</section>

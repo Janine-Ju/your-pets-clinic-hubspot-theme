@@ -1,0 +1,247 @@
+/* ── Service Listing ── */
+
+.service-listing {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.sl-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Section Header ── */
+.sl-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.sl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid #00BFA5;
+  color: #00BFA5;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.sl-title {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+.sl-subtitle {
+  font-size: 16px;
+  color: #636e72;
+  line-height: 1.65;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.sl-subtitle p {
+  margin: 0;
+}
+
+/* ── Cards Grid ── */
+.sl-grid {
+  display: grid;
+  gap: 28px;
+}
+
+.sl-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.sl-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.sl-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ── Card ── */
+.sl-card {
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.sl-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Card Image */
+.sl-card-img {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.sl-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sl-card-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e8f5f3, #d0ede8);
+}
+
+/* Overlay Badges on Image */
+.sl-badge-img {
+  position: absolute;
+  top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+.sl-badge-popular {
+  left: 12px;
+  background: #00BFA5;
+  color: #fff;
+}
+
+.sl-badge-category {
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3436;
+  backdrop-filter: blur(4px);
+}
+
+/* Card Body */
+.sl-card-body {
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sl-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.sl-card-desc {
+  font-size: 14px;
+  color: #636e72;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.sl-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.sl-duration {
+  font-size: 13px;
+  color: #999;
+}
+
+.sl-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+/* Book Now Button */
+.sl-book-btn {
+  display: block;
+  text-align: center;
+  border: 1.5px solid #00BFA5;
+  color: #00BFA5;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 11px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  margin-top: auto;
+}
+
+.sl-book-btn:hover {
+  background: #00BFA5;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Bottom CTA ── */
+.sl-footer-cta {
+  text-align: center;
+  margin-top: 52px;
+}
+
+.sl-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid #00BFA5;
+  color: #00BFA5;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sl-cta-btn:hover {
+  background: #00BFA5;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Debug Info ── */
+.sl-debug {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.sl-debug code {
+  background: #f0f0f0;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .sl-cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .sl-cols-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .sl-cols-4,
+  .sl-cols-3,
+  .sl-cols-2 { grid-template-columns: 1fr; }
+
+  .service-listing { padding: 48px 0; }
+}

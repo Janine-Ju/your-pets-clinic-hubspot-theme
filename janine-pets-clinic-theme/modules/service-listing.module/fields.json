@@ -6,21 +6,30 @@
     "required": true
   },
   {
-    "name": "section_label",
-    "label": "Section Label",
+    "name": "section_badge",
+    "label": "Section Badge (e.g. ⭐ Popular Services)",
     "type": "text",
-    "default": "What We Offer"
+    "default": "⭐ Popular Services"
   },
   {
     "name": "section_title",
     "label": "Section Title",
     "type": "text",
-    "default": "Our Services"
+    "default": "Comprehensive Veterinary Services"
   },
   {
     "name": "section_subtitle",
     "label": "Section Subtitle",
-    "type": "text"
+    "type": "richtext",
+    "default": "From routine wellness exams to advanced surgical procedures, our clinic offers a full spectrum of veterinary care under one roof."
+  },
+  {
+    "name": "display_count",
+    "label": "Number of Services to Display",
+    "type": "number",
+    "min": 1,
+    "max": 10,
+    "default": 4
   },
   {
     "name": "show_popular_only",
@@ -29,47 +38,38 @@
     "default": true
   },
   {
-    "name": "show_price",
-    "label": "Show Price",
-    "type": "boolean",
-    "default": false
+    "name": "card_columns",
+    "label": "Columns (Desktop)",
+    "type": "choice",
+    "choices": [ ["2", "2 Columns"], ["3", "3 Columns"], ["4", "4 Columns"] ],
+    "default": "4"
+  },
+  {
+    "name": "book_cta_text",
+    "label": "Card CTA Text",
+    "type": "text",
+    "default": "Book Now →"
+  },
+  {
+    "name": "book_cta_url",
+    "label": "Card CTA URL",
+    "type": "link"
   },
   {
     "name": "cta_text",
-    "label": "CTA Text",
+    "label": "Bottom CTA Text",
     "type": "text",
     "default": "View All Services →"
   },
   {
     "name": "cta_url",
-    "label": "CTA URL",
+    "label": "Bottom CTA URL",
     "type": "link"
   },
   {
-    "name": "card_columns",
-    "label": "Columns (Desktop)",
-    "type": "choice",
-    "choices": [ ["2", "2"], ["3", "3"], ["4", "4"] ],
-    "default": "3"
-  },
-  {
-    "name": "card_background",
-    "label": "Card Background",
-    "type": "color",
-    "default": "#ffffff"
-  },
-  {
-    "name": "card_radius",
-    "label": "Card Radius",
-    "type": "choice",
-    "choices": [ ["none", "none"], ["sm", "sm"], ["md", "md"], ["lg", "lg"] ],
-    "default": "md"
-  },
-  {
-    "name": "gap",
-    "label": "Gap Size",
-    "type": "choice",
-    "choices": [ ["small", "small"], ["medium", "medium"], ["large", "large"] ],
-    "default": "medium"
+    "name": "show_price",
+    "label": "Show Price",
+    "type": "boolean",
+    "default": false
   }
 ]
