@@ -1,0 +1,127 @@
+<div class="service-listing {{ module.layout }}">
+    {# 1. 抓取 HubDB 資料 #}
+    {% set table_id = "271285926" %}
+    {% set rows = hubdb_table_rows(table_id) %}
+  
+    <div class="services-container">
+      {% for row in rows %}
+        <div class="service-card {% if row.popular %}is-popular{% endif %}">
+          
+          {# 服務圖片與熱門標籤 #}
+          <div class="image-box">
+            {% if row.image %}
+              <img src="{{ row.image.url }}" alt="{{ row.name }}">
+            {% endif %}
+            
+            {# 如果有勾選 Popular，就顯示標籤 #}
+            {% if row.popular %}
+              <span class="popular-badge">🔥 熱門推薦</span>
+            {% endif %}
+          </div>
+  
+          <div class="card-content">
+            {# 分類與時長 #}
+            <div class="meta-info">
+              <span class="category">{{ row.category }}</span>
+              <span class="duration">
+                <i class="fa fa-clock-o"></i> {{ row.duration }}
+              </span>
+            </div>
+  
+            {# 服務標題 #}
+            <h3>{{ row.name }}</h3>
+            
+            {# 服務描述 #}
+            <p class="description">{{ row.description }}</p>
+  
+            {# 底部：價格與按鈕 #}
+            <div class="card-footer">
+              <span class="price">{{ row.price }}</span>
+              {# 預留 Link 欄位判斷 #}
+              {% if row.link %}
+                <a href="{{ row.link }}" class="btn-learn-more">了解更多</a>
+              {% else %}
+                <a href="#" class="btn-learn-more">預約諮詢</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <style>
+    /* 容器樣式 */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 40px 20px;
+      justify-content: center;
+    }
+  
+    /* 卡片基礎樣式 */
+    .service-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      overflow: hidden;
+      width: calc(33.333% - 20px); /* 一排三個 */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+  
+    /* 圖片與熱門標籤 */
+    .image-box { position: relative; height: 220px; }
+    .image-box img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #FF6B6B;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(255,107,107,0.3);
+    }
+  
+    .card-content { padding: 24px; }
+    .meta-info { display: flex; justify-content: space-between; margin-bottom: 12px; }
+    .category { color: #FF6B6B; font-weight: 700; font-size: 13px; text-transform: uppercase; }
+    .duration { color: #888; font-size: 13px; }
+  
+    h3 { margin: 0 0 12px 0; color: #2D3436; font-size: 20px; }
+    .description { color: #636E72; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+  
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #F1F2F6;
+      padding-top: 20px;
+    }
+    .price { font-size: 22px; font-weight: 800; color: #2D3436; }
+    .btn-learn-more {
+      background: #FF6B6B;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn-learn-more:hover { background: #EE5253; }
+  
+    /* 特別突顯熱門卡片 */
+    .service-card.is-popular { border: 2px solid #FF6B6B; }
+  
+    /* 列表模式切換 (如有需要) */
+    .list .service-card { width: 100%; display: flex; }
+    .list .image-box { width: 300px; height: auto; }
+  </style>

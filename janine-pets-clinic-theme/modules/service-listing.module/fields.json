@@ -1,0 +1,12 @@
+[
+  {
+    "name": "layout",
+    "label": "Layout Style",
+    "type": "choice",
+    "choices": [
+      ["card", "Card View"],
+      ["list", "List View"]
+    ],
+    "default": "card"
+  }
+]
