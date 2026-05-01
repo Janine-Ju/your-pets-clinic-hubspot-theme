@@ -1,0 +1,8 @@
+[
+  {
+    "name": "limit",
+    "label": "醫師顯示數量 (0 為顯示全部)",
+    "type": "number",
+    "default": 0
+  }
+]

@@ -1,0 +1,116 @@
+<div class="doctor-listing-section">
+    {# 1. 從 HubDB 抓取資料，並根據 fields.json 的設定限制數量 [cite: 81, 981] #}
+    {% set table_id = "271285930" %}
+    {% set query = "" %}
+    
+    {% if module.limit > 0 %}
+      {% set query = "limit=" ~ module.limit %}
+    {% endif %}
+    
+    {% set doctors = hubdb_table_rows(table_id, query) %}
+  
+    <div class="doctors-grid">
+      {% for doctor in doctors %}
+        <div class="doctor-card">
+          {# 醫師照片：粉色邊框圓形頭像  #}
+          <div class="doctor-image-wrapper">
+            {% if doctor.photo %}
+              <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}">
+            {% else %}
+              {# 如果沒照片則顯示預設圖 [cite: 75, 429] #}
+              <img src="https://f.hubspotusercontent40.net/hubfs/51203041/default-avatar.png" alt="No Photo">
+            {% endif %}
+          </div>
+  
+          <div class="doctor-content">
+            {# 專業標籤 (SPECIALTY) [cite: 59, 76] #}
+            <span class="specialty-label">{{ doctor.specialty }}</span>
+            
+            {# 醫師姓名 (NAME) [cite: 13, 66] #}
+            <h3 class="doctor-name">{{ doctor.name }}</h3>
+            
+            {# 職稱與年資 (TITLE & YEARS EXPERIENCE) [cite: 58, 454] #}
+            <p class="doctor-title">
+              <strong>{{ doctor.title }}</strong> 
+              {% if doctor.years_experience %}
+                <span class="exp-tag">• {{ doctor.years_experience }}</span>
+              {% endif %}
+            </p>
+            
+            {# 簡短介紹 (BIO) [cite: 60, 76] #}
+            <div class="doctor-bio">
+              {{ doctor.bio }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <style>
+    /* 醫師區塊基礎排版 [cite: 76] */
+    .doctor-listing-section { padding: 60px 0; max-width: 1200px; margin: 0 auto; }
+    .doctors-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+  
+    /* 醫師卡片：還原 Figma 設計  */
+    .doctor-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 45px 25px;
+      width: calc(25% - 23px); /* 一排四個 [cite: 76] */
+      text-align: center;
+      box-shadow: 0 12px 45px rgba(0,0,0,0.04);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid #f8f8f8;
+    }
+    .doctor-card:hover { transform: translateY(-15px); box-shadow: 0 20px 60px rgba(255, 107, 107, 0.1); }
+  
+    /* 圓形照片與粉色邊框 [cite: 76] */
+    .doctor-image-wrapper { margin-bottom: 25px; position: relative; display: inline-block; }
+    .doctor-image-wrapper img {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #FFF2F2; /* 淡淡的粉紅邊框 */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+  
+    /* 專業標籤：Figma 主色系 [cite: 76, 84] */
+    .specialty-label {
+      display: inline-block;
+      background-color: #FF6B6B;
+      color: #ffffff;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 15px;
+    }
+  
+    .doctor-name { margin: 8px 0; font-size: 24px; color: #2D3436; font-weight: 700; }
+    .doctor-title { font-size: 15px; color: #636E72; margin-bottom: 20px; }
+    .exp-tag { color: #B2BEC3; font-weight: 400; margin-left: 6px; }
+  
+    /* 簡介截斷處理 [cite: 76] */
+    .doctor-bio {
+      font-size: 14px;
+      color: #7F8C8D;
+      line-height: 1.7;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; 
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    /* 行動版適應 */
+    @media (max-width: 1024px) { .doctor-card { width: calc(50% - 15px); } }
+    @media (max-width: 650px) { .doctor-card { width: 100%; } }
+  </style>
