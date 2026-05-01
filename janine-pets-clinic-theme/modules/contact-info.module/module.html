@@ -1,0 +1,94 @@
+<section class="contact-info-section">
+  <div class="container">
+    <div class="contact-flex">
+      
+      {# 1. 左側：文字資訊區 #}
+      <div class="contact-details">
+        <h2 class="section-title">{{ module.title }}</h2>
+        
+        <div class="info-list">
+          <div class="info-item">
+            <span class="icon">📍</span>
+            <div class="text">
+              <strong>Address</strong>
+              <p>{{ module.address }}</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <span class="icon">📞</span>
+            <div class="text">
+              <strong>Phone</strong>
+              <p>{{ module.phone }}</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <span class="icon">✉️</span>
+            <div class="text">
+              <strong>Email</strong>
+              <p>{{ module.email }}</p>
+            </div>
+          </div>
+        </div>
+
+        {# 營業時間區塊 #}
+        <div class="working-hours">
+          <h3>Working Hours</h3>
+          <ul>
+            {% for item in module.working_hours %}
+              <li>
+                <span class="day">{{ item.day_range }}</span>
+                <span class="time">{{ item.time_range }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      {# 2. 右側：地圖區 #}
+      <div class="contact-map">
+        {% if module.map_embed_url %}
+          <iframe src="{{ module.map_embed_url }}" width="100%" height="450" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
+        {% else %}
+          <div class="map-placeholder">
+            <p>Please provide a Google Maps URL in the module settings.</p>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-info-section { padding: 80px 20px; background: #ffffff; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .contact-flex { display: flex; gap: 60px; align-items: flex-start; }
+  
+  .contact-details { flex: 1; }
+  .contact-map { flex: 1; }
+
+  .section-title { font-size: 36px; color: #2D3436; margin-bottom: 40px; font-weight: 800; }
+
+  .info-list { margin-bottom: 50px; }
+  .info-item { display: flex; gap: 20px; margin-bottom: 25px; }
+  .info-item .icon { font-size: 24px; }
+  .info-item strong { display: block; color: #2D3436; font-size: 18px; margin-bottom: 5px; }
+  .info-item p { margin: 0; color: #636E72; }
+
+  .working-hours { background: #F9FBFB; padding: 30px; border-radius: 20px; border: 1px solid #E9F5F5; }
+  .working-hours h3 { margin: 0 0 20px 0; color: #2D3436; font-size: 20px; }
+  .working-hours ul { list-style: none; padding: 0; margin: 0; }
+  .working-hours li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+  .working-hours li:last-child { border-bottom: none; }
+  .working-hours .day { font-weight: 600; color: #2D3436; }
+  .working-hours .time { color: #00B894; font-weight: 700; }
+
+  .map-placeholder { height: 450px; background: #eee; border-radius: 20px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+
+  @media (max-width: 991px) {
+    .contact-flex { flex-direction: column; }
+    .contact-details, .contact-map { width: 100%; }
+  }
+</style>

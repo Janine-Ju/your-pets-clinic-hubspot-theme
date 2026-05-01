@@ -1,0 +1,55 @@
+<div class="carousel-banner-wrapper {{ module.min_height }}" 
+     data-autoplay="{{ module.autoplay }}" 
+     data-speed="{{ module.autoplay_speed }}">
+  
+  <div class="slides-container">
+    {% for slide in module.slides %}
+      <div class="slide-item" style="background-image: url('{{ slide.slide_image.src }}'); text-align: {{ module.text_alignment }};">
+        {# 背景遮罩層 #}
+        <div class="overlay" style="background: rgba(0,0,0,{{ module.overlay_opacity }});"></div>
+        
+        <div class="slide-content content-wrapper">
+          {% if slide.slide_badge %}
+            <span class="slide-badge">{{ slide.slide_badge }}</span>
+          {% endif %}
+          
+          <div class="slide-headline">{{ slide.slide_headline }}</div>
+          <p class="slide-subtext">{{ slide.slide_subtext }}</p>
+          
+          {% if slide.slide_cta_text %}
+            <a href="{{ slide.slide_cta_url.href }}" class="cta-button">
+              {{ slide.slide_cta_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {# 依據設定顯示控制按鈕 (這裡先以 CSS 結構示意，實際功能通常需搭配 JS 或 HubSpot Slider 設定) #}
+</div>
+
+<style>
+  .carousel-banner-wrapper { position: relative; overflow: hidden; color: white; }
+  .carousel-banner-wrapper.screen { height: 100vh; }
+  .carousel-banner-wrapper.large { height: 600px; }
+  .carousel-banner-wrapper.medium { height: 400px; }
+
+  .slide-item { 
+    height: 100%; background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+  .slide-content { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; }
+
+  .slide-badge { 
+    display: inline-block; background: #FF6B6B; padding: 5px 15px; 
+    border-radius: 20px; font-size: 14px; margin-bottom: 20px; 
+  }
+  .slide-headline h1, .slide-headline h2 { font-size: 48px; margin: 0; color: white; }
+  .slide-subtext { font-size: 18px; margin: 20px 0 30px; opacity: 0.9; }
+  .cta-button { 
+    display: inline-block; background: #00B894; color: white; 
+    padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold;
+  }
+</style><!-- module html  -->

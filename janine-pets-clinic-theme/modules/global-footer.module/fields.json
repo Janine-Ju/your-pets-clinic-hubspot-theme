@@ -1,0 +1,5 @@
+[
+  { "name": "logo", "label": "Footer Logo", "type": "image" },
+  { "name": "clinic_info", "label": "Clinic Info / Address", "type": "richtext", "default": "<p>123 Pet Lane, Paw City<br>Tel: (02) 2345-6789</p>" },
+  { "name": "copyright_text", "label": "Copyright Text", "type": "text", "default": "© 2024 PawClinic. All rights reserved." }
+]

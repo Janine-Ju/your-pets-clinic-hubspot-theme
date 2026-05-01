@@ -1,0 +1,27 @@
+[
+  {
+    "name": "map_embed_code",
+    "label": "Google Map Embed Code",
+    "type": "text",
+    "placeholder": "在這裡貼上 <iframe ...> 代碼",
+    "help_text": "前往 Google Maps 點擊『分享』，選擇『嵌入地圖』並複製 HTML 代碼。"
+  },
+  {
+    "name": "map_height",
+    "label": "Map Height (px)",
+    "type": "number",
+    "default": 450
+  },
+  {
+    "name": "full_width",
+    "label": "Full Width?",
+    "type": "boolean",
+    "default": false
+  },
+  {
+    "name": "background_color",
+    "label": "Background Color",
+    "type": "color",
+    "default": { "color": "#FFFFFF" }
+  }
+]

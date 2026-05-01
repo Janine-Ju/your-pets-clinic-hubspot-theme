@@ -1,0 +1,31 @@
+[
+  {
+    "name": "headline",
+    "label": "Headline",
+    "type": "text",
+    "default": "Our Services"
+  },
+  {
+    "name": "description",
+    "label": "Description",
+    "type": "richtext",
+    "default": "Comprehensive veterinary care for your beloved pets at every stage of their lives."
+  },
+  {
+    "name": "background_color",
+    "label": "Background Color",
+    "type": "color",
+    "default": { "color": "#E9F5F5" }
+  },
+  {
+    "name": "hero_image",
+    "label": "Decorative Image (Right)",
+    "type": "image"
+  },
+  {
+    "name": "show_breadcrumbs",
+    "label": "Show Breadcrumbs",
+    "type": "boolean",
+    "default": true
+  }
+]

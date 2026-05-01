@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      {# 第一欄：診所資訊 #}
+      <div class="footer-col info-col">
+        <div class="footer-logo">
+           <span class="logo-text">Paw<span>Clinic</span></span>
+        </div>
+        <div class="info-content">
+          {{ module.clinic_info }}
+        </div>
+      </div>
+
+      {# 第二欄：快速連結 #}
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/doctors">Doctors</a></li>
+        </ul>
+      </div>
+
+      {# 第三欄：服務項目 #}
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Wellness Exam</a></li>
+          <li><a href="#">Vaccinations</a></li>
+          <li><a href="#">Dental Care</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>{{ module.copyright_text }}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: #F9FBFB; padding: 80px 0 40px; border-top: 1px solid #f0f0f0; }
+  .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  
+  .footer-col h4 { font-size: 18px; color: #2D3436; margin-bottom: 25px; font-weight: 700; }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a { text-decoration: none; color: #636E72; transition: 0.3s; }
+  .footer-col ul li a:hover { color: #00B894; }
+
+  .info-content { margin-top: 20px; color: #636E72; line-height: 1.6; }
+  .footer-bottom { border-top: 1px solid #eee; padding-top: 30px; text-align: center; color: #999; font-size: 14px; }
+
+  @media (max-width: 767px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
+</style>

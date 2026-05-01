@@ -1,0 +1,41 @@
+[
+  {
+    "name": "slides",
+    "label": "Slides",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 5, "default": 3 },
+    "children": [
+      { "name": "slide_image", "label": "Slide Image", "type": "image" },
+      { "name": "slide_badge", "label": "Slide Badge (e.g. 🏥 Open 7 Days)", "type": "text" },
+      { "name": "slide_headline", "label": "Slide Headline", "type": "richtext" },
+      { "name": "slide_subtext", "label": "Slide Subtext", "type": "text" },
+      { "name": "slide_cta_text", "label": "CTA Text", "type": "text" },
+      { "name": "slide_cta_url", "label": "CTA URL", "type": "link" }
+    ]
+  },
+  { "name": "autoplay", "label": "Autoplay", "type": "boolean", "default": true },
+  { "name": "autoplay_speed", "label": "Autoplay Speed (ms)", "type": "number", "default": 5000 },
+  { "name": "show_dots", "label": "Show Dots", "type": "boolean", "default": true },
+  { "name": "show_arrows", "label": "Show Arrows", "type": "boolean", "default": true },
+  {
+    "name": "overlay_opacity",
+    "label": "Overlay Opacity (0-1)",
+    "type": "number",
+    "display": "slider",
+    "min": 0, "max": 1, "step": 0.1, "default": 0.4
+  },
+  {
+    "name": "min_height",
+    "label": "Min Height",
+    "type": "choice",
+    "choices": [ ["screen", "Full Screen"], ["large", "Large"], ["medium", "Medium"] ],
+    "default": "large"
+  },
+  {
+    "name": "text_alignment",
+    "label": "Text Alignment",
+    "type": "choice",
+    "choices": [ ["left", "Left"], ["center", "Center"], ["right", "Right"] ],
+    "default": "center"
+  }
+]

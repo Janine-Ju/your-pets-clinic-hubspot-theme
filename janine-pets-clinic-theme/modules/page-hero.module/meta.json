@@ -1,0 +1,15 @@
+{
+  "global": false,
+  "host_template_types": [
+    "PAGE"
+  ],
+  "is_available_for_new_content": true,
+  "label": "Page Hero",
+  "tags": [],
+  "content_tags": [
+    {
+      "name": "TEXT",
+      "source": "USER"
+    }
+  ]
+}

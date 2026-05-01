@@ -1,0 +1,45 @@
+[
+  {
+    "name": "section_title",
+    "label": "Section Title",
+    "type": "text",
+    "default": "Book a Clinic Appointment"
+  },
+  {
+    "name": "section_subtitle",
+    "label": "Section Subtitle",
+    "type": "text"
+  },
+  {
+    "name": "hubspot_form_id",
+    "label": "HubSpot Form ID",
+    "type": "text",
+    "required": true,
+    "default": "hs-booking-form-001"
+  },
+  {
+    "name": "portal_id",
+    "label": "Portal ID",
+    "type": "text",
+    "required": true,
+    "default": "51203041"
+  },
+  {
+    "name": "success_message",
+    "label": "Success Message",
+    "type": "richtext",
+    "default": "<h3>Thank you!</h3><p>Your appointment details have been sent to your email.</p>"
+  },
+  {
+    "name": "show_clinic_info",
+    "label": "Show Clinic Info",
+    "type": "boolean",
+    "default": true
+  },
+  {
+    "name": "show_emergency_card",
+    "label": "Show Emergency Card",
+    "type": "boolean",
+    "default": true
+  }
+]

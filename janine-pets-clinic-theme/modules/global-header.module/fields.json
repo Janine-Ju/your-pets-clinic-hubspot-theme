@@ -1,0 +1,6 @@
+[
+  { "name": "logo", "label": "Logo", "type": "image" },
+  { "name": "header_menu", "label": "Navigation Menu", "type": "menu", "id": "default" },
+  { "name": "cta_text", "label": "CTA Button Text", "type": "text", "default": "Book Appointment" },
+  { "name": "cta_link", "label": "CTA Button Link", "type": "link" }
+]

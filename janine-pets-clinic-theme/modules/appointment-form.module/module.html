@@ -1,0 +1,76 @@
+<div class="appointment-section">
+    <div class="container">
+      {# 1. 標題區塊 #}
+      <div class="form-header">
+        {% if module.section_title %}<h2>{{ module.section_title }}</h2>{% endif %}
+        {% if module.section_subtitle %}<p>{{ module.section_subtitle }}</p>{% endif %}
+      </div>
+  
+      <div class="form-flex-container">
+        {# 2. 表單區域 #}
+        <div class="form-container">
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+          <script>
+            hbspt.forms.create({
+              region: "na1",
+              portalId: "{{ module.portal_id }}",
+              formId: "{{ module.hubspot_form_id }}",
+              target: "#hs-form-target",
+              onFormSubmitted: function($form) {
+                // 提交成功後顯示摘要卡片
+                document.getElementById('success-summary-card').style.display = 'block';
+                document.getElementById('hs-form-target').style.display = 'none';
+              }
+            });
+          </script>
+          <div id="hs-form-target"></div>
+  
+          {# 3. 成功狀態摘要卡片 (Success State) #}
+          <div id="success-summary-card" class="summary-card" style="display:none;">
+            <div class="success-icon">✅</div>
+            {{ module.success_message }}
+            <div class="details-box">
+              <h4>Booking Summary</h4>
+              <p><strong>Service:</strong> [Selected Service]</p>
+              <p><strong>Date:</strong> [Selected Date]</p>
+              <p><strong>Time:</strong> [Selected Time]</p>
+            </div>
+          </div>
+        </div>
+  
+        {# 4. 右側資訊欄 (依開關顯示) #}
+        {% if module.show_clinic_info or module.show_emergency_card %}
+          <div class="info-sidebar">
+            {% if module.show_clinic_info %}
+              <div class="clinic-info-box">
+                <h3>Clinic Location</h3>
+                <p>📍 123 Pet Lane, Paw City</p>
+                <p>📞 (02) 2345-6789</p>
+              </div>
+            {% endif %}
+            
+            {% if module.show_emergency_card %}
+              <div class="emergency-card">
+                <h3>🚑 24/7 Emergency</h3>
+                <p>If your pet needs immediate care, call our emergency hotline directly.</p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .appointment-section { padding: 80px 0; background: #f9fbfb; }
+    .form-header { text-align: center; margin-bottom: 50px; }
+    .form-flex-container { display: flex; gap: 40px; }
+    .form-container { flex: 2; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .info-sidebar { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+    
+    .summary-card { text-align: center; padding: 20px; border: 2px solid #00B894; border-radius: 15px; background: #EFFFFB; }
+    .details-box { text-align: left; background: white; padding: 15px; border-radius: 10px; margin-top: 20px; }
+    
+    .emergency-card { background: #FF6B6B; color: white; padding: 25px; border-radius: 20px; }
+    .clinic-info-box { background: #fff; padding: 25px; border-radius: 20px; border: 1px solid #eee; }
+  </style>

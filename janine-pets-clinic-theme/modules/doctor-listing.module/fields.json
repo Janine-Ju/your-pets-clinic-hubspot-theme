@@ -1,8 +1,33 @@
 [
   {
-    "name": "limit",
-    "label": "醫師顯示數量 (0 為顯示全部)",
-    "type": "number",
-    "default": 0
+    "name": "hubdb_table_id",
+    "label": "HubDB Table",
+    "type": "hubdbtable",
+    "required": true
+  },
+  { "name": "section_title", "label": "Section Title", "type": "text", "default": "Meet Our Specialists" },
+  { "name": "section_subtitle", "label": "Section Subtitle", "type": "text" },
+  { "name": "limit", "label": "醫師顯示數量 (0 為顯示全部)", "type": "number", "default": 0 },
+  {
+    "name": "columns",
+    "label": "Columns (Desktop)",
+    "type": "choice",
+    "choices": [ ["2", "2"], ["3", "3"], ["4", "4"] ],
+    "default": "4"
+  },
+  { "name": "card_background", "label": "Card Background", "type": "color", "default": "#ffffff" },
+  {
+    "name": "image_shape",
+    "label": "Image Shape",
+    "type": "choice",
+    "choices": [ ["square", "square"], ["rounded", "rounded"], ["circle", "circle"] ],
+    "default": "circle"
+  },
+  {
+    "name": "text_alignment",
+    "label": "Text Alignment",
+    "type": "choice",
+    "choices": [ ["left", "left"], ["center", "center"] ],
+    "default": "center"
   }
 ]

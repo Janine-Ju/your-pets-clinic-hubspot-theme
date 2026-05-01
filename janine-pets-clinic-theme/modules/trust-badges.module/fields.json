@@ -1,0 +1,49 @@
+[
+  {
+    "name": "badges",
+    "label": "Badges",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 4,
+      "default": 4
+    },
+    "children": [
+      {
+        "name": "badge_image",
+        "label": "Icon Image",
+        "type": "image"
+      },
+      {
+        "name": "highlight_text",
+        "label": "Highlight Text",
+        "type": "text",
+        "default": "24/7"
+      },
+      {
+        "name": "highlight_color",
+        "label": "Highlight Color",
+        "type": "color",
+        "default": { "color": "#FF4D4D" }
+      },
+      {
+        "name": "title",
+        "label": "Main Title",
+        "type": "text",
+        "default": "Emergency Line"
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "type": "text",
+        "default": "Always here when needed"
+      }
+    ]
+  },
+  {
+    "name": "background_color",
+    "label": "Background Color",
+    "type": "color",
+    "default": { "color": "#FFFFFF" }
+  }
+]

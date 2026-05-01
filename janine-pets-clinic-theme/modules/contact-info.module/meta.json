@@ -1,0 +1,7 @@
+{
+  "global": false,
+  "host_template_types": [ "PAGE" ],
+  "is_available_for_new_content": true,
+  "label": "Contact Info",
+  "content_tags": [ { "name": "TEXT", "source": "USER" } ]
+}

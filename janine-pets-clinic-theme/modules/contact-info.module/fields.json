@@ -1,0 +1,17 @@
+[
+  { "name": "title", "label": "Title", "type": "text", "default": "Get in Touch" },
+  { "name": "address", "label": "Address", "type": "text", "default": "123 Pet Lane, Paw City, PC 5678" },
+  { "name": "phone", "label": "Phone Number", "type": "text", "default": "(02) 2345-6789" },
+  { "name": "email", "label": "Email Address", "type": "text", "default": "hello@pawclinic.com" },
+  {
+    "name": "working_hours",
+    "label": "Working Hours",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 7, "default": 2 },
+    "children": [
+      { "name": "day_range", "label": "Days (e.g. Mon - Fri)", "type": "text", "default": "Mon - Fri" },
+      { "name": "time_range", "label": "Hours (e.g. 9:00 AM - 6:00 PM)", "type": "text", "default": "9:00 AM - 8:00 PM" }
+    ]
+  },
+  { "name": "map_embed_url", "label": "Google Map Embed URL (Optional)", "type": "text", "placeholder": "貼上 Google Map 的 src 網址" }
+]

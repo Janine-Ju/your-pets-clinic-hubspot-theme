@@ -1,12 +1,75 @@
 [
   {
-    "name": "layout",
-    "label": "Layout Style",
+    "name": "hubdb_table_id",
+    "label": "HubDB Table",
+    "type": "hubdbtable",
+    "required": true
+  },
+  {
+    "name": "section_label",
+    "label": "Section Label",
+    "type": "text",
+    "default": "What We Offer"
+  },
+  {
+    "name": "section_title",
+    "label": "Section Title",
+    "type": "text",
+    "default": "Our Services"
+  },
+  {
+    "name": "section_subtitle",
+    "label": "Section Subtitle",
+    "type": "text"
+  },
+  {
+    "name": "show_popular_only",
+    "label": "Show Popular Only",
+    "type": "boolean",
+    "default": true
+  },
+  {
+    "name": "show_price",
+    "label": "Show Price",
+    "type": "boolean",
+    "default": false
+  },
+  {
+    "name": "cta_text",
+    "label": "CTA Text",
+    "type": "text",
+    "default": "View All Services →"
+  },
+  {
+    "name": "cta_url",
+    "label": "CTA URL",
+    "type": "link"
+  },
+  {
+    "name": "card_columns",
+    "label": "Columns (Desktop)",
     "type": "choice",
-    "choices": [
-      ["card", "Card View"],
-      ["list", "List View"]
-    ],
-    "default": "card"
+    "choices": [ ["2", "2"], ["3", "3"], ["4", "4"] ],
+    "default": "3"
+  },
+  {
+    "name": "card_background",
+    "label": "Card Background",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  {
+    "name": "card_radius",
+    "label": "Card Radius",
+    "type": "choice",
+    "choices": [ ["none", "none"], ["sm", "sm"], ["md", "md"], ["lg", "lg"] ],
+    "default": "md"
+  },
+  {
+    "name": "gap",
+    "label": "Gap Size",
+    "type": "choice",
+    "choices": [ ["small", "small"], ["medium", "medium"], ["large", "large"] ],
+    "default": "medium"
   }
 ]

@@ -1,127 +1,86 @@
-<div class="service-listing {{ module.layout }}">
-    {# 1. 抓取 HubDB 資料 #}
-    {% set table_id = "271285926" %}
-    {% set rows = hubdb_table_rows(table_id) %}
-  
-    <div class="services-container">
-      {% for row in rows %}
-        <div class="service-card {% if row.popular %}is-popular{% endif %}">
-          
-          {# 服務圖片與熱門標籤 #}
-          <div class="image-box">
-            {% if row.image %}
+{# 1. 從模組欄位抓取正確的設定值 #}
+{% set table_id = 271285926 %}
+{# 關鍵修正：將變數名改為 card_columns #}
+{% set cols = module.card_columns|default(3) %} 
+
+<div class="service-listing-dynamic">
+  <div class="container">
+    
+    {# 標題區塊 #}
+    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+      {% if module.section_title %}<h2>{{ module.section_title }}</h2>{% endif %}
+    </div>
+
+    {# 卡片網格：使用 CSS Grid 控制欄位數量 #}
+    <div class="service-grid" style="display: grid; grid-template-columns: repeat({{ cols }}, 1fr); gap: 30px;">
+      
+      {# 執行 HubDB 資料抓取 #}
+      {% for row in hubdb_table_rows(table_id) %}
+        <div class="service-card">
+          <div class="card-img">
+            {% if row.image.url %}
               <img src="{{ row.image.url }}" alt="{{ row.name }}">
-            {% endif %}
-            
-            {# 如果有勾選 Popular，就顯示標籤 #}
-            {% if row.popular %}
-              <span class="popular-badge">🔥 熱門推薦</span>
+            {% else %}
+              <div style="height:200px; background:#eee;"></div>
             {% endif %}
           </div>
-  
-          <div class="card-content">
-            {# 分類與時長 #}
-            <div class="meta-info">
-              <span class="category">{{ row.category }}</span>
-              <span class="duration">
-                <i class="fa fa-clock-o"></i> {{ row.duration }}
-              </span>
-            </div>
-  
-            {# 服務標題 #}
+          
+          <div class="card-body">
+            <span class="category-tag">{{ row.category }}</span>
             <h3>{{ row.name }}</h3>
+            <p>{{ row.description|truncate(100) }}</p>
             
-            {# 服務描述 #}
-            <p class="description">{{ row.description }}</p>
-  
-            {# 底部：價格與按鈕 #}
             <div class="card-footer">
-              <span class="price">{{ row.price }}</span>
-              {# 預留 Link 欄位判斷 #}
-              {% if row.link %}
-                <a href="{{ row.link }}" class="btn-learn-more">了解更多</a>
-              {% else %}
-                <a href="#" class="btn-learn-more">預約諮詢</a>
+              <span class="duration">⏱ {{ row.duration }}</span>
+              {% if module.show_price %}
+                <span class="price">${{ row.price }}</span>
               {% endif %}
             </div>
+            
+            <span class="fake-link">Learn More →</span>
           </div>
         </div>
       {% endfor %}
     </div>
+
   </div>
+</div>
+
+<style>
+  .service-listing-dynamic { padding: 80px 0; background: #ffffff; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
   
-  <style>
-    /* 容器樣式 */
-    .services-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 40px 20px;
-      justify-content: center;
-    }
+  .service-card { 
+    border: 1px solid #f0f0f0; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-img img { width: 100%; height: 220px; object-fit: cover; }
+  .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
   
-    /* 卡片基礎樣式 */
-    .service-card {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 16px;
-      overflow: hidden;
-      width: calc(33.333% - 20px); /* 一排三個 */
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-  
-    /* 圖片與熱門標籤 */
-    .image-box { position: relative; height: 220px; }
-    .image-box img { width: 100%; height: 100%; object-fit: cover; }
-    
-    .popular-badge {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #FF6B6B;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(255,107,107,0.3);
-    }
-  
-    .card-content { padding: 24px; }
-    .meta-info { display: flex; justify-content: space-between; margin-bottom: 12px; }
-    .category { color: #FF6B6B; font-weight: 700; font-size: 13px; text-transform: uppercase; }
-    .duration { color: #888; font-size: 13px; }
-  
-    h3 { margin: 0 0 12px 0; color: #2D3436; font-size: 20px; }
-    .description { color: #636E72; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
-  
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #F1F2F6;
-      padding-top: 20px;
-    }
-    .price { font-size: 22px; font-weight: 800; color: #2D3436; }
-    .btn-learn-more {
-      background: #FF6B6B;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .btn-learn-more:hover { background: #EE5253; }
-  
-    /* 特別突顯熱門卡片 */
-    .service-card.is-popular { border: 2px solid #FF6B6B; }
-  
-    /* 列表模式切換 (如有需要) */
-    .list .service-card { width: 100%; display: flex; }
-    .list .image-box { width: 300px; height: auto; }
-  </style>
+  .category-tag { color: #00B894; font-weight: 700; font-size: 13px; text-transform: uppercase; }
+  .card-body h3 { margin: 10px 0; font-size: 22px; color: #2D3436; }
+  .card-body p { color: #636E72; line-height: 1.6; font-size: 15px; margin-bottom: 20px; flex-grow: 1; }
+
+  .card-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding-top: 15px; 
+    border-top: 1px solid #eee; 
+  }
+  .duration { font-size: 14px; color: #999; }
+  .price { font-weight: 800; color: #2D3436; font-size: 18px; }
+  .fake-link { display: block; margin-top: 15px; color: #00B894; font-weight: 700; }
+
+  /* 手機版強制一排一個 */
+  @media (max-width: 767px) {
+    .service-grid { grid-template-columns: 1fr !important; }
+  }
+</style>

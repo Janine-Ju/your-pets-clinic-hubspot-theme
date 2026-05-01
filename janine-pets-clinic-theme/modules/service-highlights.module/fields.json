@@ -1,0 +1,52 @@
+[
+  {
+    "name": "image_position",
+    "label": "Image Position",
+    "type": "choice",
+    "choices": [ ["left", "Left"], ["right", "Right"] ],
+    "default": "left"
+  },
+  {
+    "name": "badge_text",
+    "label": "Badge Text",
+    "type": "text",
+    "default": "Medical Services"
+  },
+  {
+    "name": "title",
+    "label": "Title",
+    "type": "text",
+    "default": "High-quality Medical Care"
+  },
+  {
+    "name": "description",
+    "label": "Description",
+    "type": "richtext",
+    "default": "<p>We provide comprehensive medical services to ensure your pet stays healthy and happy.</p>"
+  },
+  {
+    "name": "highlights",
+    "label": "Highlights List",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 4, "default": 2 },
+    "children": [
+      { "name": "text", "label": "Text", "type": "text", "default": "Advanced Diagnostics" }
+    ]
+  },
+  {
+    "name": "main_image",
+    "label": "Main Image",
+    "type": "image"
+  },
+  {
+    "name": "cta_text",
+    "label": "Button Text",
+    "type": "text",
+    "default": "Learn More"
+  },
+  {
+    "name": "cta_url",
+    "label": "Button URL",
+    "type": "link"
+  }
+]

@@ -1,0 +1,75 @@
+<section class="cta-banner-section" 
+         style="background-image: linear-gradient(rgba(0,0,0,{{ module.overlay_opacity }}), rgba(0,0,0,{{ module.overlay_opacity }})), url('{{ module.background_image.src }}');">
+  
+  <div class="cta-content">
+    <h2 class="cta-headline">{{ module.headline }}</h2>
+    <p class="cta-subtext">{{ module.subtext }}</p>
+    
+    {% if module.button_text %}
+      <a href="{{ module.button_url.href }}" class="cta-primary-btn">
+        {{ module.button_text }}
+      </a>
+    {% endif %}
+  </div>
+
+</section>
+
+<style>
+  .cta-banner-section {
+    padding: 120px 20px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 產生輕微的視差滾動效果，更專業 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-headline {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .cta-subtext {
+    font-size: 20px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .cta-primary-btn {
+    background-color: #00B894; /* 診所主題綠 */
+    color: #ffffff;
+    padding: 18px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .cta-primary-btn:hover {
+    background-color: #00947a;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  }
+
+  /* 手機版縮小字體 */
+  @media (max-width: 767px) {
+    .cta-banner-section { padding: 80px 20px; }
+    .cta-headline { font-size: 32px; }
+    .cta-subtext { font-size: 16px; }
+  }
+</style>

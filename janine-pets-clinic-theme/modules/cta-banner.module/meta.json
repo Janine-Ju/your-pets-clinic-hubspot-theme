@@ -1,0 +1,19 @@
+{
+  "global": false,
+  "host_template_types": [
+    "PAGE"
+  ],
+  "is_available_for_new_content": true,
+  "label": "CTA Banner",
+  "tags": [],
+  "content_tags": [
+    {
+      "name": "IMAGE",
+      "source": "USER"
+    },
+    {
+      "name": "TEXT",
+      "source": "USER"
+    }
+  ]
+}

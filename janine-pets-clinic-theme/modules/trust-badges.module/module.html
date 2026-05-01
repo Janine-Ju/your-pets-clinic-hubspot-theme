@@ -1,0 +1,124 @@
+{# --- 信用標籤模組 HTML 結構 --- #}
+<section class="trust-badges-section" style="background-color: {{ module.background_color.color }};">
+  <div class="content-wrapper">
+    <div class="badges-grid">
+      
+      {% for item in module.badges %}
+        <div class="badge-item">
+          
+          {# 1. 左側圖示區 #}
+          <div class="badge-icon-box">
+            {% if item.badge_image.src %}
+              <img src="{{ item.badge_image.src }}" alt="{{ item.title }}" class="badge-img">
+            {% else %}
+              <div class="placeholder-icon"></div>
+            {% endif %}
+          </div>
+
+          {# 2. 右側文字內容區 #}
+          <div class="badge-text-box">
+            <h3>
+              {# 強調文字：顏色改為抓取欄位設定的顏色 #}
+              {% if item.highlight_text %}
+                <span class="title-highlight" style="color: {{ item.highlight_color.color }};">
+                  {{ item.highlight_text }}
+                </span>
+              {% endif %}
+              
+              <span class="title-main">{{ item.title }}</span>
+            </h3>
+            
+            <p class="badge-desc">{{ item.description }}</p>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{# --- 模組專屬 CSS 樣式 --- #}
+<style>
+  .trust-badges-section {
+    padding: 50px 20px;
+  }
+
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .badges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .badge-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    width: calc(25% - 30px);
+    min-width: 240px;
+  }
+
+  .badge-icon-box {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .badge-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .placeholder-icon {
+    width: 50px;
+    height: 50px;
+    background: #f5f5f5;
+    border-radius: 12px;
+  }
+
+  .badge-text-box h3 {
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title-highlight {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+
+  .title-main {
+    color: #2D3436;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .badge-desc {
+    margin: 0;
+    font-size: 14px;
+    color: #7F8C8D;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 767px) {
+    .badge-item {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .badge-text-box h3 {
+      align-items: center;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+<section class="map-embed-section" style="background-color: {{ module.background_color.color }};">
+  <div class="{{ 'container-fluid' if module.full_width else 'container' }}">
+    
+    <div class="map-wrapper" style="height: {{ module.map_height }}px;">
+      {% if module.map_embed_code %}
+        {# 關鍵：使用 |safe 讓 HubSpot 允許輸出 HTML 標籤 #}
+        {{ module.map_embed_code|safe }}
+      {% else %}
+        <div class="map-placeholder">
+          <p>📍 Please paste your Google Maps iframe code in the module settings.</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .map-embed-section {
+    padding: 0; /* 地圖通常不需要內距 */
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .container-fluid {
+    width: 100%;
+  }
+
+  .map-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background: #f0f0f0;
+    position: relative;
+    {% if not module.full_width %}
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    {% endif %}
+  }
+
+  /* 強制地圖 Iframe 撐滿容器 */
+  .map-wrapper iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+  }
+
+  .map-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999;
+    font-weight: 500;
+  }
+
+  @media (max-width: 767px) {
+    .container { padding: 40px 15px; }
+    /* 手機版地圖稍微縮短一點比較好按 */
+    .map-wrapper { height: 350px !important; }
+  }
+</style>

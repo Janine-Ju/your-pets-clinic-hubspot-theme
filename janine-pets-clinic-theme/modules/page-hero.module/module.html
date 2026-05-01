@@ -1,0 +1,104 @@
+<section class="page-hero" style="background-color: {{ module.background_color.color }};">
+  <div class="container hero-flex">
+    
+    {# 左側內容區 #}
+    <div class="hero-content">
+      {# 麵包屑導航 (簡單還原設計) #}
+      {% if module.show_breadcrumbs %}
+        <nav class="breadcrumb">
+          <a href="/">Home</a> <span>/</span> <span class="current">{{ module.headline }}</span>
+        </nav>
+      {% endif %}
+
+      <h1 class="hero-title">{{ module.headline }}</h1>
+      
+      <div class="hero-desc">
+        {{ module.description }}
+      </div>
+    </div>
+
+    {# 右側裝飾圖區 #}
+    <div class="hero-image-box">
+      {% if module.hero_image.src %}
+        <img src="{{ module.hero_image.src }}" alt="{{ module.headline }}">
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-flex {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .hero-content {
+    flex: 1;
+    max-width: 600px;
+  }
+
+  /* 麵包屑樣式 */
+  .breadcrumb {
+    font-size: 14px;
+    color: #7F8C8D;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .breadcrumb a {
+    text-decoration: none;
+    color: #7F8C8D;
+  }
+  .breadcrumb span { margin: 0 5px; }
+  .breadcrumb .current { color: #00B894; font-weight: 700; }
+
+  /* 標題與描述 */
+  .hero-title {
+    font-size: 48px;
+    color: #2D3436;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+  }
+  .hero-desc p {
+    font-size: 18px;
+    color: #636E72;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* 圖片區 */
+  .hero-image-box {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .hero-image-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* 如果妳用的是照片可以加圓角 */
+  }
+
+  /* 手機版適應 */
+  @media (max-width: 767px) {
+    .hero-flex {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-image-box {
+      order: -1; /* 圖片在手機版移到上方 */
+      justify-content: center;
+    }
+    .hero-title { font-size: 36px; }
+  }
+</style>
